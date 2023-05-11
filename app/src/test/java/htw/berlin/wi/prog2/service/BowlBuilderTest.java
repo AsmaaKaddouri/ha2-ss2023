@@ -84,4 +84,27 @@ class BowlBuilderTest {
     }
 
     // TODO hier mind. einen Test hinzufügen, der das korrekte Werfen der IllegalBowlException testet (assertThrows)
+    @Test
+    @DisplayName("test build bowl with less than two ingredients")
+    public void testBuildBowlWithLessThanTwoIngredients() {
+        BowlBuilder builder = new BowlBuilder();
+        builder.add(new Ingredient("Spinach", 20, 0.5));
+        try {
+            builder.buildPrecomputed();
+            fail("Expected IllegalBowlException to be thrown");
+        } catch (IllegalBowlException e) {
+            assertEquals("A bowl must have at least two ingredients", e.getMessage());
+        }
+
+        builder = new BowlBuilder();
+        builder.add(new Ingredient("Tomato", 15, 0.3))
+                .add(new Ingredient("Cucumber", 10, 0.4))
+                .add(new Ingredient("Lettuce", 5, 0.2));
+        try {
+            builder.buildDynamicallyComputed();
+            fail("Expected IllegalBowlException to be thrown");
+        } catch (IllegalBowlException e) {
+            assertEquals("A bowl must have at least two ingredients", e.getMessage());
+        }
+    }
 }
