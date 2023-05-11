@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class SimpleInputParser {
+public class SimpleInputParser implements InputParser{
+    SimpleInputParser parser = new SimpleInputParser();
+
     public List<Ingredient> ingredientsFromInput(String inputLine) {
         List<Ingredient> result = new ArrayList<>();
         for (Ingredient ing : Menu.getAllArticles().values()) {
@@ -16,4 +18,5 @@ public class SimpleInputParser {
         }
         return result;
     }
+
 }
